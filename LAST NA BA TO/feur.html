@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FEUR Events | FEU Freshman Memories</title>
+  <link rel="stylesheet" href="Gallery Design.css" />
+</head>
+<body>
+<header class="navbar">
+  <nav>
+    <ul>
+      <li><a href="website.html">Home</a></li>
+      <li><a href="gallery.html" class="active">Gallery</a></li>
+      <li><a href="#">Contact Us</a></li>
+      <li><a href="#">About</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="gallery-section">
+  <div class="filter-menu">
+    <button class="filter" id="all-btn">ALL</button>
+    <button class="filter" id="purposive-btn">Purposive Communication</button>
+    <button class="filter" id="pathfit-btn">PATHFIT</button>
+    <button class="filter" id="nstp-btn">NSTP</button>
+    <button class="filter active" id="feur-btn">FEUR Events</button>
+  </div>
+
+  <div class="gallery-grid">
+    <div class="gallery-item" data-category="feur">
+      <img src="FEUR/photo_6057630224154823544_y.jpg" alt="FEUR Event 1" />
+      <div class="overlay">Sinag tam</div>
+    </div>
+  </div>
+
+  <!-- Modal (single shared for all images) -->
+<div id="imageModal" class="modal">
+  <span class="close">&times;</span>
+  <div class="modal-content">
+    <img id="modalImage" src="" alt="Zoomed Image" />
+    <span class="prev">&#10094;</span>
+    <span class="next">&#10095;</span>
+  </div>
+</div>
+
+
+</section>
+
+<script src="Gallery.js"></script>
+</body>
+</html>

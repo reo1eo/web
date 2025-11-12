@@ -1,0 +1,336 @@
+@font-face {
+  font-family: "Montserrat";
+  src: url(Fonts/Montserrat-VariableFont_wght.ttf);
+}
+@font-face {
+  font-family: "Poppins";
+  src: url(Fonts/Poppins-Regular.ttf);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+  justify-content: center;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  background-image: url(Photos/Picture.png);
+  background-color: rgba(0, 0, 0, 0.95);
+  overflow-x: hidden;
+}
+
+nav {
+  position: fixed;
+  top: 50px;
+  left: 0;
+  right: 0;
+  width: 100%;
+  background: transparent;
+  padding: 1.5rem 0;
+  z-index: 300;
+  transition: top 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+}
+
+nav.scrolled {
+  top: 0;
+  padding: 1.5rem 0;
+  background: rgba(2, 23, 13, 0.95);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+  z-index: 400;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6.5rem;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  font-size: 1.2rem;
+  letter-spacing: 1.5px;
+  position: relative;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  padding: 0.25rem 0.5rem;
+}
+
+nav ul li a::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%) scale(0);
+  transform-origin: center;
+  width: 100%;
+  height: 3px;
+  background: gold;
+  transition: transform 0.3s ease;
+}
+
+nav ul li a:hover::after {
+  transform: translateX(-50%) scale(1);
+}
+
+nav ul li a.active::after {
+  transform: translateX(-50%) scale(1);
+}
+
+nav ul li a:hover {
+  color: goldenrod;
+}
+
+nav ul li a.active {
+  color: gold;
+}
+
+.gallery-section {
+  margin-top: 150px;
+  padding: 2rem;
+}
+
+.filter-menu {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.filter {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.filter:hover {
+  background-color: gold;
+  color: black;
+  border-color: gold;
+}
+
+.filter.active {
+  background-color: gold;
+  color: black;
+  border-color: gold;
+}
+
+.filter a,
+.filter a:link,
+.filter a:visited {
+  color: inherit;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.filter a:hover,
+.filter a:focus {
+  color: #012101;
+  text-decoration: none;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1.5rem;
+  padding: 2rem 0;
+  max-width: 1400px;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: center;
+}
+
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #000;
+}
+
+.gallery-item video {
+  background-color: #000;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.gallery-item img,
+.gallery-item video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 16px;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.gallery-item:hover img,
+.gallery-item:hover video {
+  transform: scale(1.05);
+  filter: brightness(0.6);
+}
+
+.overlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0.5rem 1rem;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  text-align: left;
+  opacity: 0;
+  transition: opacity 0.4s ease, transform 0.3s ease;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+}
+
+.gallery-item:hover .overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.95);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal.show {
+  display: flex;
+}
+
+.modal-content img,
+.modal-content video {
+  max-width: 95vw;
+  max-height: 80vh;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* MEDIA WRAPPER HOVER FOR MODAL TEXT */
+.modal-content .media-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* Overlay hidden by default */
+.modal-content .overlay {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  text-align: left;
+  pointer-events: none;
+  background: rgba(0,0,0,0.3);
+  padding: 8px 14px;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* Show overlay on hover of media */
+.modal-content .media-wrapper:hover .overlay {
+  opacity: 1;
+}
+
+.modal-content .overlay .title {
+  color: gold;
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+}
+
+.modal-content .overlay .description {
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 500;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
+.prev, .next {
+  position: absolute;
+  top: 50%;
+  font-size: 3rem;
+  color: white;
+  cursor: pointer;
+  z-index: 1001;
+  user-select: none;
+}
+
+.prev { left: 20px; }
+.next { right: 20px; }
+
+.close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 2.5rem;
+  color: white;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+@media (max-width: 1200px) {
+  .gallery-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 992px) {
+  .gallery-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+}
